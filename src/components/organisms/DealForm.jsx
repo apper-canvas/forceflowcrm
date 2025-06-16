@@ -26,11 +26,16 @@ const DealForm = ({ deal, onSave, onCancel }) => {
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    if (deal) {
+if (deal) {
       setFormData({
-        ...deal,
-        closeDate: deal.closeDate ? format(new Date(deal.closeDate), 'yyyy-MM-dd') : '',
-        amount: deal.amount || 0
+        name: deal.Name,
+        amount: deal.amount || 0,
+        stage: deal.stage || 'Lead',
+        closeDate: deal.close_date ? format(new Date(deal.close_date), 'yyyy-MM-dd') : '',
+        contactId: deal.contact_id || '',
+        companyId: deal.company_id || '',
+        ownerId: deal.owner_id || 'user1',
+        notes: deal.notes || ''
       })
     }
     loadData()
@@ -75,9 +80,9 @@ const DealForm = ({ deal, onSave, onCancel }) => {
         amount: parseFloat(formData.amount)
       }
       
-      let savedDeal
+let savedDeal
       if (deal) {
-        savedDeal = await dealService.update(deal.id, dealData)
+        savedDeal = await dealService.update(deal.Id, dealData)
         toast.success('Deal updated successfully')
       } else {
         savedDeal = await dealService.create(dealData)
@@ -98,19 +103,19 @@ const DealForm = ({ deal, onSave, onCancel }) => {
     }
   }
 
-  const contactOptions = contacts.map(contact => ({
-    value: contact.id,
-    label: `${contact.firstName} ${contact.lastName}`
+const contactOptions = contacts.map(contact => ({
+    value: contact.Id,
+    label: `${contact.first_name} ${contact.last_name}`
   }))
 
   const companyOptions = companies.map(company => ({
-    value: company.id,
-    label: company.name
+    value: company.Id,
+    label: company.Name
   }))
 
   const stageOptions = stages.map(stage => ({
-    value: stage.name,
-    label: stage.name
+    value: stage.Name,
+    label: stage.Name
   }))
 
   return (

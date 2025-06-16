@@ -113,8 +113,7 @@ const Dashboard = () => {
   if (error) {
     return <ErrorState message={error} onRetry={loadDashboardData} />
   }
-
-  // Calculate metrics
+// Calculate metrics
   const totalDealsValue = data.deals.reduce((sum, deal) => sum + (deal.amount || 0), 0)
   const openDeals = data.deals.filter(deal => !['Closed Won', 'Closed Lost'].includes(deal.stage))
   const wonDeals = data.deals.filter(deal => deal.stage === 'Closed Won')
@@ -122,10 +121,10 @@ const Dashboard = () => {
 
   // Pipeline distribution data
   const pipelineData = data.stages.map(stage => {
-    const stageDeals = data.deals.filter(deal => deal.stage === stage.name)
+    const stageDeals = data.deals.filter(deal => deal.stage === stage.Name)
     const stageValue = stageDeals.reduce((sum, deal) => sum + (deal.amount || 0), 0)
     return {
-      stage: stage.name,
+      stage: stage.Name,
       count: stageDeals.length,
       value: stageValue,
       color: stage.color
@@ -158,31 +157,31 @@ const Dashboard = () => {
 
   const pipelineChartSeries = pipelineData.map(item => item.count)
 
-  // Recent activities (mock data based on deals)
+// Recent activities (mock data based on deals)
   const recentActivities = [
     {
-      text: `New deal "${data.deals[0]?.name}" created`,
+      text: `New deal "${data.deals[0]?.Name}" created`,
       time: '2 hours ago',
       icon: 'Plus',
       bgColor: 'bg-green-100',
       iconColor: 'text-green-600'
     },
     {
-      text: `Deal "${data.deals[1]?.name}" moved to Negotiation`,
+      text: `Deal "${data.deals[1]?.Name}" moved to Negotiation`,
       time: '4 hours ago',
       icon: 'ArrowRight',
       bgColor: 'bg-blue-100',
       iconColor: 'text-blue-600'
     },
     {
-      text: `New contact "${data.contacts[0]?.firstName} ${data.contacts[0]?.lastName}" added`,
+      text: `New contact "${data.contacts[0]?.first_name} ${data.contacts[0]?.last_name}" added`,
       time: '6 hours ago',
       icon: 'UserPlus',
       bgColor: 'bg-purple-100',
       iconColor: 'text-purple-600'
     },
     {
-      text: `Deal "${wonDeals[0]?.name}" closed successfully`,
+      text: `Deal "${wonDeals[0]?.Name}" closed successfully`,
       time: '1 day ago',
       icon: 'CheckCircle',
       bgColor: 'bg-green-100',

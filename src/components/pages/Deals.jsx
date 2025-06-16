@@ -60,9 +60,9 @@ const Deals = () => {
 
     // Apply search filter
     if (searchQuery) {
-      const query = searchQuery.toLowerCase()
+const query = searchQuery.toLowerCase()
       filtered = filtered.filter(deal =>
-        deal.name.toLowerCase().includes(query) ||
+        deal.Name?.toLowerCase().includes(query) ||
         deal.stage?.toLowerCase().includes(query)
       )
     }
@@ -103,21 +103,20 @@ const Deals = () => {
     setShowForm(true)
   }
 
-  const handleDelete = async (deal) => {
-    if (window.confirm(`Are you sure you want to delete "${deal.name}"?`)) {
+const handleDelete = async (deal) => {
+    if (window.confirm(`Are you sure you want to delete "${deal.Name}"?`)) {
       try {
-        await dealService.delete(deal.id)
-        setDeals(deals.filter(d => d.id !== deal.id))
+        await dealService.delete(deal.Id)
+        setDeals(deals.filter(d => d.Id !== deal.Id))
         toast.success('Deal deleted successfully')
       } catch (error) {
         toast.error('Failed to delete deal')
       }
     }
   }
-
-  const handleSave = (savedDeal) => {
+const handleSave = (savedDeal) => {
     if (editingDeal) {
-      setDeals(deals.map(d => d.id === savedDeal.id ? savedDeal : d))
+      setDeals(deals.map(d => d.Id === savedDeal.Id ? savedDeal : d))
     } else {
       setDeals([...deals, savedDeal])
     }
@@ -129,25 +128,23 @@ const Deals = () => {
     setSortField(field)
     setSortDirection(direction)
   }
-
-  const getContactName = (contactId) => {
-    const contact = contacts.find(c => c.id === contactId)
-    return contact ? `${contact.firstName} ${contact.lastName}` : '-'
+const getContactName = (contactId) => {
+    const contact = contacts.find(c => c.Id === contactId)
+    return contact ? `${contact.first_name} ${contact.last_name}` : '-'
   }
 
   const getCompanyName = (companyId) => {
-    const company = companies.find(c => c.id === companyId)
-    return company ? company.name : '-'
+    const company = companies.find(c => c.Id === companyId)
+    return company ? company.Name : '-'
   }
-
-  const tableColumns = [
+const tableColumns = [
     {
-      key: 'name',
+      key: 'Name',
       label: 'Deal Name',
       sortable: true,
       render: (value, deal) => (
         <div>
-          <div className="font-medium text-gray-900">{deal.name}</div>
+          <div className="font-medium text-gray-900">{deal.Name}</div>
           <div className="text-sm text-gray-500">{deal.stage}</div>
         </div>
       )
@@ -174,21 +171,21 @@ const Deals = () => {
         }
         return variants[stage] || 'default'
       }
-    },
+},
     {
-      key: 'closeDate',
+      key: 'close_date',
       label: 'Close Date',
       sortable: true,
       type: 'date'
     },
     {
-      key: 'contactId',
+      key: 'contact_id',
       label: 'Contact',
       sortable: false,
       render: (value) => getContactName(value)
     },
     {
-      key: 'companyId',
+      key: 'company_id',
       label: 'Company',
       sortable: false,
       render: (value) => getCompanyName(value)

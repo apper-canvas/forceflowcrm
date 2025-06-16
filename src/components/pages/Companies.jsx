@@ -59,9 +59,9 @@ const Companies = () => {
 
     // Apply search filter
     if (searchQuery) {
-      const query = searchQuery.toLowerCase()
+const query = searchQuery.toLowerCase()
       filtered = filtered.filter(company =>
-        company.name.toLowerCase().includes(query) ||
+        company.Name?.toLowerCase().includes(query) ||
         company.industry?.toLowerCase().includes(query)
       )
     }
@@ -99,21 +99,20 @@ const Companies = () => {
     setShowForm(true)
   }
 
-  const handleDelete = async (company) => {
-    if (window.confirm(`Are you sure you want to delete ${company.name}?`)) {
+const handleDelete = async (company) => {
+    if (window.confirm(`Are you sure you want to delete ${company.Name}?`)) {
       try {
-        await companyService.delete(company.id)
-        setCompanies(companies.filter(c => c.id !== company.id))
+        await companyService.delete(company.Id)
+        setCompanies(companies.filter(c => c.Id !== company.Id))
         toast.success('Company deleted successfully')
       } catch (error) {
         toast.error('Failed to delete company')
       }
     }
   }
-
-  const handleSave = (savedCompany) => {
+const handleSave = (savedCompany) => {
     if (editingCompany) {
-      setCompanies(companies.map(c => c.id === savedCompany.id ? savedCompany : c))
+      setCompanies(companies.map(c => c.Id === savedCompany.Id ? savedCompany : c))
     } else {
       setCompanies([...companies, savedCompany])
     }
@@ -125,26 +124,24 @@ const Companies = () => {
     setSortField(field)
     setSortDirection(direction)
   }
-
-  const getPrimaryContactName = (contactId) => {
-    const contact = contacts.find(c => c.id === contactId)
-    return contact ? `${contact.firstName} ${contact.lastName}` : '-'
+const getPrimaryContactName = (contactId) => {
+    const contact = contacts.find(c => c.Id === contactId)
+    return contact ? `${contact.first_name} ${contact.last_name}` : '-'
   }
-
-  const tableColumns = [
+const tableColumns = [
     {
-      key: 'name',
+      key: 'Name',
       label: 'Company',
       sortable: true,
       render: (value, company) => (
         <div className="flex items-center">
           <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
             <span className="text-sm font-medium text-primary">
-              {company.name?.charAt(0)?.toUpperCase()}
+              {company.Name?.charAt(0)?.toUpperCase()}
             </span>
           </div>
           <div>
-            <div className="font-medium text-gray-900">{company.name}</div>
+            <div className="font-medium text-gray-900">{company.Name}</div>
             <div className="text-sm text-gray-500">{company.industry}</div>
           </div>
         </div>
@@ -175,9 +172,9 @@ const Companies = () => {
       label: 'Revenue',
       sortable: true,
       type: 'currency'
-    },
+},
     {
-      key: 'primaryContactId',
+      key: 'primary_contact_id',
       label: 'Primary Contact',
       sortable: false,
       render: (value) => getPrimaryContactName(value)

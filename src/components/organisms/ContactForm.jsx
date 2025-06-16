@@ -22,9 +22,18 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
 
-  useEffect(() => {
+useEffect(() => {
     if (contact) {
-      setFormData(contact)
+      setFormData({
+        firstName: contact.first_name || '',
+        lastName: contact.last_name || '',
+        email: contact.email || '',
+        phone: contact.phone || '',
+        jobTitle: contact.job_title || '',
+        companyId: contact.company_id || '',
+        status: contact.status || 'Lead',
+        notes: contact.notes || ''
+      })
     }
     loadCompanies()
   }, [contact])
@@ -57,9 +66,9 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
     
     setLoading(true)
     try {
-      let savedContact
+let savedContact
       if (contact) {
-        savedContact = await contactService.update(contact.id, formData)
+        savedContact = await contactService.update(contact.Id, formData)
         toast.success('Contact updated successfully')
       } else {
         savedContact = await contactService.create(formData)
@@ -80,9 +89,9 @@ const ContactForm = ({ contact, onSave, onCancel }) => {
     }
   }
 
-  const companyOptions = companies.map(company => ({
-    value: company.id,
-    label: company.name
+const companyOptions = companies.map(company => ({
+    value: company.Id,
+    label: company.Name
   }))
 
   const statusOptions = [
