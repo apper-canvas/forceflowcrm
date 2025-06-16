@@ -1,0 +1,67 @@
+[
+  {
+    "id": "1",
+    "name": "TechCorp Solutions",
+    "industry": "Technology",
+    "website": "https://techcorp.com",
+    "phone": "+1 (555) 100-2000",
+    "address": "123 Innovation Drive, San Francisco, CA 94105",
+    "revenue": 15000000,
+    "primaryContactId": "1",
+    "notes": "Mid-size technology company focused on enterprise software solutions. Strong growth trajectory.",
+    "createdAt": "2024-01-10T09:00:00Z",
+    "updatedAt": "2024-01-20T14:22:00Z"
+  },
+  {
+    "id": "2",
+    "name": "InnovateTech Inc",
+    "industry": "Software Development",
+    "website": "https://innovatetech.com",
+    "phone": "+1 (555) 200-3000",
+    "address": "456 Tech Park Blvd, Austin, TX 78701",
+    "revenue": 8500000,
+    "primaryContactId": "2",
+    "notes": "Rapidly growing startup specializing in AI and machine learning solutions.",
+    "createdAt": "2024-01-15T11:30:00Z",
+    "updatedAt": "2024-01-25T11:45:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Global Manufacturing Co",
+    "industry": "Manufacturing",
+    "website": "https://globalmanufacturing.com",
+    "phone": "+1 (555) 300-4000",
+    "address": "789 Industrial Way, Detroit, MI 48201",
+    "revenue": 45000000,
+    "primaryContactId": "3",
+    "notes": "Large manufacturing company looking to modernize operations with digital solutions.",
+    "createdAt": "2024-01-20T14:15:00Z",
+    "updatedAt": "2024-02-05T16:30:00Z"
+  },
+  {
+    "id": "4",
+    "name": "RetailPlus Chain",
+    "industry": "Retail",
+    "website": "https://retailplus.com",
+    "phone": "+1 (555) 400-5000",
+    "address": "321 Commerce Street, Chicago, IL 60601",
+    "revenue": 25000000,
+    "primaryContactId": "4",
+    "notes": "Regional retail chain with 50+ locations. Expanding online presence.",
+    "createdAt": "2024-02-01T10:00:00Z",
+    "updatedAt": "2024-02-12T10:15:00Z"
+  },
+  {
+    "id": "5",
+    "name": "HealthServices Network",
+    "industry": "Healthcare",
+    "website": "https://healthservices.org",
+    "phone": "+1 (555) 500-6000",
+    "address": "654 Medical Center Dr, Boston, MA 02101",
+    "revenue": 32000000,
+    "primaryContactId": "5",
+    "notes": "Healthcare network serving multiple facilities. Focus on patient care technology.",
+    "createdAt": "2024-02-05T09:30:00Z",
+    "updatedAt": "2024-02-18T14:30:00Z"
+  }
+]
